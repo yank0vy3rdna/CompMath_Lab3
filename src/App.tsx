@@ -8,6 +8,7 @@ import {getFunctionLambda, getSelectList} from "./services/functionsLambdas";
 import NumericInput from "react-numeric-input";
 import {getMethodByValue, getMethodsSelect} from "./services/methods";
 import Table from "./components/DynamicTable";
+import SettingsFile from "./components/SettingsFile";
 
 function App() {
     const selectFunctionsList = getSelectList()
@@ -77,6 +78,29 @@ function App() {
                     </td>
                 </tr>
             </table>
+            <SettingsFile setSettings={(text: string)=>{
+                try {
+                    let obj = JSON.parse(text)
+                    if (!('left' in obj)){
+                        throw SyntaxError("Bad file")
+                    }
+                    if (!('right' in obj)){
+                        throw SyntaxError("Bad file")
+                    }
+                    if (!('epsilon' in obj)){
+                        throw SyntaxError("Bad file")
+                    }
+                    if (!('xnull' in obj)){
+                        throw SyntaxError("Bad file")
+                    }
+                    setLeft(obj.left)
+                    setRight(obj.right)
+                    setXNull(obj.xnull)
+                    setEpsilon(obj.epsilon)
+                }catch (e){
+                    alert("File is not correct")
+                }
+            }}/>
             <PlotItem x={x} y={y}/>
             <Table data={resultOfCalc.data} header={resultOfCalc.headers}/>
         </div>
