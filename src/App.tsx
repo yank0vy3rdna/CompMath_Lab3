@@ -18,11 +18,7 @@ function App() {
     const [left, setLeft] = useState(0);
     const [right, setRight] = useState(2);
     const [epsilon, setEpsilon] = useState(0.001);
-    const [x_null, setXNull] = useState(0);
-    if (x_null < left)
-        setXNull(left)
-    if (x_null > right)
-        setXNull(right)
+
     if (left > right)
         setLeft(right)
     if (right < left)
@@ -32,12 +28,12 @@ function App() {
 
     const functionLambda = getFunctionLambda(selectedFunction.value)
     const method = getMethodByValue(selectedMethod.value)
-    const resultOfCalc = method.method(functionLambda, left, right, epsilon, x_null)
+    const resultOfCalc = method.method(functionLambda, left, right, epsilon)
 
 
     return (
         <div className="App">
-            <h3>Лабораторная работа №2 по вычислительной математике. Крюков Андрей, P3214</h3>
+            <h3>Лабораторная работа №3 по вычислительной математике. Крюков Андрей, P3214</h3>
             <table className="App">
                 <tr>
                     <td>Выбор функции:</td>
@@ -50,14 +46,14 @@ function App() {
                                     options={selectMethodsList}/></td>
                 </tr>
                 <tr>
-                    <td>Выбор левой границы интервала:</td>
+                    <td>Выбор нижнего предела интегрирования:</td>
                     <td>
                         <NumericInput step={0.001} precision={3} value={left}
                                       onChange={setLeft} max={right}/>
                     </td>
                 </tr>
                 <tr>
-                    <td>Выбор правой границы интервала:</td>
+                    <td>Выбор верхнего предела интегрирования:</td>
                     <td>
                         <NumericInput step={0.001} precision={3} value={right}
                                       onChange={setRight} min={left}/>
@@ -68,13 +64,6 @@ function App() {
                     <td>
                         <NumericInput step={0.001} precision={3} value={epsilon}
                                       onChange={setEpsilon} min={0.001}/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Выбор начального приближения к корню:</td>
-                    <td>
-                        <NumericInput step={0.001} precision={3} value={x_null}
-                                      onChange={setXNull} min={left} max={right}/>
                     </td>
                 </tr>
             </table>
@@ -95,7 +84,6 @@ function App() {
                     }
                     setLeft(obj.left)
                     setRight(obj.right)
-                    setXNull(obj.xnull)
                     setEpsilon(obj.epsilon)
                 }catch (e){
                     alert("File is not correct")

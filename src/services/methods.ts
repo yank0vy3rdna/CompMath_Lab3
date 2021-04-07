@@ -1,6 +1,8 @@
-import Hordes from "../methods/hordes";
-import Secants from "../methods/secants";
-import Iterations from "../methods/iterations";
+import RectanglesLeft from "../methods/RectanglesLeft";
+import RectanglesRight from "../methods/RectanglesRight";
+import RectanglesCenter from "../methods/RectanglesCenter";
+import Trapezoid from "../methods/Trapezoid";
+import Simpson from "../methods/Simpson";
 
 const methods = [
     {
@@ -11,9 +13,11 @@ const methods = [
             }
         }
     },
-    {value: 1, label: "Метод хорд", method: Hordes},
-    {value: 2, label: "Метод секущих", method: Secants},
-    {value: 3, label: "Метод простых итераций", method: Iterations},
+    {value: 1, label: "Метод прямоугольников(левые)", method: RectanglesLeft},
+    {value: 2, label: "Метод прямоугольников(правые)", method: RectanglesRight},
+    {value: 3, label: "Метод прямоугольников(средние)", method: RectanglesCenter},
+    {value: 4, label: "Метод трапеций", method: Trapezoid},
+    {value: 5, label: "Метод Симпсона", method: Simpson},
 ]
 
 export function getMethodsSelect() {

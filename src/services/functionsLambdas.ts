@@ -28,6 +28,10 @@ const functions: { int: { lambda: (x: number) => number; label: string; } } = {
         der: (x: number) => 3 * x * x - 1,
         der_2: (x: number) => 6 * x
     },
+    4: {
+        lambda: (x: number) => 3 * x * x * x - 2 * x * x - 7 * x - 8,
+        label: '3x^3-2x^2-7x-8',
+    }
 }
 
 export function getFunctionLambda(selectedFunction: number) {
